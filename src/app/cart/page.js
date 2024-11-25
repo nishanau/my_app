@@ -19,7 +19,7 @@ const CartPage = () => {
       const data = await viewCart();
       setCart(data);
     } catch (err) {
-      message.error('Failed to load cart');
+      message.error('Failed to load cart', 2);
     } finally {
       setLoading(false);
     }
@@ -29,7 +29,7 @@ const CartPage = () => {
   const handleRemoveFromCart = async (productId) => {
     try {
       await removeFromCart(productId);
-      message.success('Product removed from cart');
+      message.success('Product removed from cart', 0.5);
 
       // Filter out the removed item from the cart state
       setCart((prevCart) => ({

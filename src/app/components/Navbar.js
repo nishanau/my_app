@@ -32,42 +32,57 @@ const Navbar = () => {
     }
   }, [pathname]);
 
+  // Define menu items
+  const menuItems = [
+    {
+      key: 'home',
+      icon: <HomeOutlined />,
+      label: <Link href="/">Home</Link>,
+    },
+    {
+      key: 'products',
+      icon: <AppstoreOutlined />,
+      label: <Link href="/products">Products</Link>,
+    },
+    ...(isAuthenticated
+      ? [
+          {
+            key: 'userprofile',
+            icon: <UserOutlined />,
+            label: <Link href="/userprofile">Profile</Link>,
+          },
+          {
+            key: 'cart',
+            icon: <ShoppingCartOutlined />,
+            label: <Link href="/cart">Cart</Link>,
+          },
+          {
+            key: 'logout',
+            icon: <LogoutOutlined />,
+            label: 'Logout',
+            onClick: logout,
+          },
+        ]
+      : [
+          {
+            key: 'login',
+            icon: <UserOutlined />,
+            label: <Link href="/login">Login</Link>,
+          },
+          {
+            key: 'register',
+            icon: <UserOutlined />,
+            label: <Link href="/register">Register</Link>,
+          },
+        ]),
+  ];
+
   return (
     <Header>
       <div className="logo" style={{ float: 'left', color: 'white', fontWeight: 'bold', fontSize: '1.5rem' }}>
         <Link href="/" style={{ color: 'white' }}>E-commerce Store</Link>
       </div>
-      <Menu theme="dark" mode="horizontal" selectedKeys={[selectedKey]}>
-        <Menu.Item key="home" icon={<HomeOutlined />}>
-          <Link href="/">Home</Link>
-        </Menu.Item>
-        <Menu.Item key="products" icon={<AppstoreOutlined />}>
-          <Link href="/products">Products</Link>
-        </Menu.Item>
-
-        {isAuthenticated ? (
-          <>
-            <Menu.Item key="userprofile" icon={<UserOutlined />}>
-              <Link href="/userprofile">Profile</Link>
-            </Menu.Item>
-            <Menu.Item key="cart" icon={<ShoppingCartOutlined />}>
-              <Link href="/cart">Cart</Link>
-            </Menu.Item>
-            <Menu.Item key="logout" icon={<LogoutOutlined />} onClick={logout}>
-              Logout
-            </Menu.Item>
-          </>
-        ) : (
-          <>
-            <Menu.Item key="login" icon={<UserOutlined />}>
-              <Link href="/login">Login</Link>
-            </Menu.Item>
-            <Menu.Item key="register" icon={<UserOutlined />}>
-              <Link href="/register">Register</Link>
-            </Menu.Item>
-          </>
-        )}
-      </Menu>
+      <Menu theme="dark" mode="horizontal" selectedKeys={[selectedKey]} items={menuItems} />
     </Header>
   );
 };

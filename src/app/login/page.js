@@ -15,7 +15,7 @@ const LoginPage = () => {
       const result = await login(values.username, values.password);
   
       if (result.success) {
-        message.success("Login successful!");
+        message.success("Login successful!", 1 );
       } else {
         // Handle specific status codes returned by login
         switch (result.status) {

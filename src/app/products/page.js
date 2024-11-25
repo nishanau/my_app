@@ -26,7 +26,7 @@ const ProductListPage = () => {
 
         setLoading(false);
       } catch (err) {
-        message.error("Failed to load products");
+        message.error("Failed to load products", 0.5);
         setLoading(false);
       }
     };
@@ -37,7 +37,7 @@ const ProductListPage = () => {
     try {
       const quantity = quantities[productId];
       await addToCart(productId, quantity); // Include quantity in API call
-      message.success("Product added to cart");
+      message.success("Product added to cart", 0.5);
     } catch (error) {
       message.error("Failed to add product to cart");
     }

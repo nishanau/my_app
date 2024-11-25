@@ -46,7 +46,7 @@ export const addToCart = async (productId, quantity = 1) => {
 
 export const removeFromCart = async (productId) => {
   try {
-    console.log('api id:',productId)
+  
     const response = await axios.post(
       `${API_URL}/cart/remove_from_cart/`,
       { product_id: productId },
